@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 import smtplib
 #usage: python sendmail.py recv_email subject message_in_file your_email your_email_password
@@ -5,6 +6,9 @@ import smtplib
 #Go to Allow less secure apps https://www.google.com/settings/security/lesssecureapps and choose "Allow" to let less secure apps access your Google account.
 #We don't recommend this option because it may make it easier for someone to gain access to your account.
 if __name__ == '__main__':
+    if len(sys.argv) < 6:
+        print '#usage: python sendmail.py recv_email subject message_in_file your_email your_email_password'
+        exit(-1)
 	smtpdomain = sys.argv[4].split('@')[-1]
 	print 'connecting to smtp.'+ smtpdomain + '...'
 	mail = smtplib.SMTP('smtp.' + smtpdomain, 587)
